@@ -9,6 +9,8 @@
 #include "bn_regular_bg_position_hbe_ptr.h"
 #include "bn_regular_bg_items_room1_bg.h"
 
+#include "bn_camera_actions.h"
+
 struct Hitbox {
     bn::fixed x, y, width, height;
 
@@ -18,7 +20,7 @@ struct Hitbox {
     }
 };
 
-void sprites_animation_actions_scene() {
+void sprites_animation_actions_scene(bn::camera_ptr& camera) {
     bn::random random_generator;
 
     bn::regular_bg_ptr bg = bn::regular_bg_items::room1_bg.create_bg(0, 0);
@@ -82,7 +84,9 @@ void sprites_animation_actions_scene() {
             
             if (!new_lamb_hitbox.collides(rock_hitbox)) {
                 lamb_sprite.set_x(new_lamb_x);
+                camera.set_x(new_lamb_x);
                 lamb_sprite.set_y(new_lamb_y);
+                camera.set_y(new_lamb_y);
                 lamb_moving = true;
             }
         }
@@ -224,8 +228,11 @@ void sprites_animation_actions_scene() {
 
 int main() {
     bn::core::init();
+
+    bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
+
     while (true) {
-        sprites_animation_actions_scene();
+        sprites_animation_actions_scene(camera);
         bn::core::update();
     }
 }
