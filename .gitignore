@@ -12,6 +12,8 @@
 
 # Ignore build directories
 build/
+*.sav
+*.elf
 
 # Ignore VS Code settings
 .vscode/
