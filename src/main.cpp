@@ -9,8 +9,6 @@
 #include "bn_regular_bg_position_hbe_ptr.h"
 #include "bn_regular_bg_items_room1_bg.h"
 
-#include "bn_camera_actions.h"
-
 struct Hitbox {
     bn::fixed x, y, width, height;
 
